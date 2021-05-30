@@ -5,7 +5,7 @@
  * - Logs every element of the array
  ************************************/
 const logger = function (array) {
-
+        array.forEach(e => console.log(e)); 
 };
 
 /*************************************
@@ -20,8 +20,11 @@ const logger = function (array) {
  *   C = (F - 32) * (5/9)
  ************************************/
 const toCelsius = function (temperatures) {
-
-};
+    const Celsius = temperatures.map(n => 
+     (n-32)*(5/9) 
+    );
+    return Celsius;
+}
 
 /**************************************
  * hottestDays(temperatures, threshhold)
@@ -32,8 +35,9 @@ const toCelsius = function (temperatures) {
  *   that exceed the threshhold
  ***************************************/
 const hottestDays = function (temperatures, threshhold) {
-
-};
+    const Exceed = temperatures.filter((D) => D > threshhold);
+    return Exceed;
+}
 
 /******************************************
  * logHottestDays(temperatures, threshhold)
@@ -50,7 +54,11 @@ const hottestDays = function (temperatures, threshhold) {
  *       all previous functions
  *******************************************/
 const logHottestDays = function (temperatures, threshhold) {
-
+    const Ctemp = toCelsius(temperatures);
+    const Cthresh = toCelsius(threshhold);
+    const hotestDay = hottestDays(Ctemp, Cthresh);
+    //const hotestDay = hottestDays(temperatures, threshhold);
+    logger(hotestDay);
 };
 
 // const logHottestDays = function (temperatures, threshhold) {
@@ -62,9 +70,9 @@ const logHottestDays = function (temperatures, threshhold) {
 
 /* Uncomment the following lines to test your code... */
 
-// logger([1, 2, 3, 4, 5, 6, 7]);
-// console.log(toCelsius([212, 122])); // should be: [100, 50];
-// console.log(hottestDays([1, 2, 3, 4, 5, 6, 7, 8, 13, 156, 1765], 5)); // should be : [6, 7, 8, 13, 156, 1765]
-// logHottestDays([140, 68, 212, 45, 149, 122, 19], 80); // should log "60", "100", "65", and "50"
+ logger([1, 2, 3, 4, 5, 6, 7]);
+ console.log(toCelsius([212, 122])); // should be: [100, 50];
+ console.log(hottestDays([1, 2, 3, 4, 5, 6, 7, 8, 13, 156, 1765], 5)); // should be : [6, 7, 8, 13, 156, 1765]
+ logHottestDays([140, 68, 212, 45, 149, 122, 19], 80); // should log "60", "100", "65", and "50"
 
 module.exports = { logger, toCelsius, hottestDays, logHottestDays };
